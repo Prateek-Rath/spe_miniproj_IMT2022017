@@ -37,6 +37,19 @@ application {
     mainClass = 'org.example.App'
 }
 
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+        exceptionFormat "short"
+        showCauses true
+        showExceptions true
+        showStackTraces true
+    }
+}
+
+
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
