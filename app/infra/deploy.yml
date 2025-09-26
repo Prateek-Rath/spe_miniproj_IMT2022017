@@ -17,16 +17,17 @@
         state: absent # ensures the container is stopped and removed
         force_kill: true
 
-    - name: Run Calculator Container as a Background Service
+    - name: Run Calculator Container as an Interactive Process
       community.docker.docker_container:
         name: calculator
         image: pratster20/miniproj_image1:1.0
-        # State: started implies detached mode (-d) for deployment
+        # NOTE: Using 'started' state here means Ansible will try to run this in the background.
+        # This will fail unless the Ansible connection is fully TTY-enabled.
         state: started
         restart_policy: always
+        interactive: true
+        tty: true
+        # CLI Command to execute the interactive application
         command: ["java", "-cp", "/app/target/classes", "com.calculator.App"]
-
-        # ⚠️ PORT MAPPING: This is usually not needed for a CLI app, but uncomment if
-        # the container needs any external network access.
-        # ports:
-        #   - "8081:8080"
+        ports:
+           - "8081:8080"
