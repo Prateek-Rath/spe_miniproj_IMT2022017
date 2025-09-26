@@ -56,7 +56,7 @@
 
 - name: Deploy Java App with Docker
   hosts: local
-  become: yes
+  become: no
   tasks:
     - name: Ensure Docker is installed
       ansible.builtin.apt:
