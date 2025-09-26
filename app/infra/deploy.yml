@@ -51,4 +51,4 @@
       shell: docker rm myapp || true
 
     - name: Run the Docker container
-      shell: docker run -d --name myapp -p 8080:8080 pratster20/miniproj_image1:1.0
+      shell: docker run -d --name myapp -p 8081:8080 pratster20/miniproj_image1:1.0
