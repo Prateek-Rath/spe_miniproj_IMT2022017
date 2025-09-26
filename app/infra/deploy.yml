@@ -55,7 +55,7 @@
 
 
 - name: Deploy Java App with Docker
-  hosts: deployment
+  hosts: local
   become: yes
   tasks:
     - name: Ensure Docker is installed
