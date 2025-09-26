@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 
 //added a comment simply
+//another comment
 class Calculator{
     public HashMap<Integer, String> options;
     public int SQRT = 1;
