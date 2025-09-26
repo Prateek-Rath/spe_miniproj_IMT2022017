@@ -5,14 +5,6 @@
   # If not, you must use 'become: true' and provide a sudo password via -K or Ansible Vault.
   become: false
   tasks:
-    - name: Ensure required Python packages are installed (Prerequisite)
-      # Using ansible.builtin.pip is better than just 'pip' for clarity
-      ansible.builtin.pip:
-        name:
-          - docker
-          - requests
-        state: present
-
     - name: Pull Calculator Docker Image
       community.docker.docker_image:
         name: pratster20/miniproj_image1
@@ -33,3 +25,8 @@
         state: started
         restart_policy: always
         command: ["java", "-cp", "/app/target/classes", "com.calculator.App"]
+
+        # ⚠️ PORT MAPPING: This is usually not needed for a CLI app, but uncomment if
+        # the container needs any external network access.
+        # ports:
+        #   - "8081:8080"
