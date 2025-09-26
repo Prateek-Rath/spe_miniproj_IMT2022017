@@ -28,6 +28,6 @@
         interactive: true
         tty: true
         # CLI Command to execute the interactive application
-        command: ["java", "-cp", "/app/target/classes", "com.calculator.App"]
+        command: ["java", "-cp", "/app/target/classes", "org1.example1.App"]
         ports:
            - "8081:8080"
