@@ -44,6 +44,7 @@ public class App {
             System.out.println("------------------------------\n");
 
         }
+        sc.close();
 
     }
 }

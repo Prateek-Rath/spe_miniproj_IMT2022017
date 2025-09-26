@@ -34,7 +34,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'org.example.App'
+    mainClass = 'org1.example1.App'
 }
 
 test {
@@ -64,7 +64,9 @@ tasks.jar {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
-
+tasks.named('run', JavaExec) {
+    standardInput = System.in
+}
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
