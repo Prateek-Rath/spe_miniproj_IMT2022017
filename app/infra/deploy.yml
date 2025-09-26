@@ -1,0 +1,54 @@
+#- name: Deploy Java App with Docker
+#  hosts: deployment
+#  become: yes
+#  tasks:
+#    - name: Ensure Docker is installed
+#      apt:
+#        name: docker.io
+#        state: present
+#        update_cache: true
+#
+#    - name: Log in to Docker Hub
+#      community.docker.docker_login:
+#        username: "pratster20"
+#        password: "Upendra1$"
+#
+#    - name: Pull latest image from Docker Hub
+#      community.docker.docker_image:
+#        name: pratster20/miniproj_image1
+#        tag: "1.0"
+#        source: pull
+#
+#    - name: Stop old container if exists
+#      community.docker.docker_container:
+#        name: miniproj-app
+#        state: absent
+#        force_kill: true
+#
+#    - name: Run new container
+#      community.docker.docker_container:
+#        name: miniproj-app
+#        image: pratster20/miniproj_image1:1.0
+#        state: started
+#        restart_policy: always
+#        ports:
+#          - "8080:8080"
+#        interactive: yes
+#        tty: yes
+
+
+- name: Deploy Docker container locally
+  hosts: local
+  become: true   # optional if docker needs sudo
+  tasks:
+    - name: Pull latest Docker image
+      shell: docker pull pratster20/miniproj_image1:1.0
+
+    - name: Stop existing container (if any)
+      shell: docker stop myapp || true
+
+    - name: Remove existing container (if any)
+      shell: docker rm myapp || true
+
+    - name: Run the Docker container
+      shell: docker run -d --name myapp -p 8080:8080 pratster20/miniproj_image1:1.0
