@@ -1,0 +1,12 @@
+# Use official OpenJDK base image
+FROM openjdk:21-jdk
+
+# Create app directory inside the container
+WORKDIR /app
+
+# Copy the JAR file from your host machine to the container
+COPY ./app/build/libs/app.jar app.jar
+
+# Run the JAR file
+ENTRYPOINT ["java", "-jar", "app.jar"]
+

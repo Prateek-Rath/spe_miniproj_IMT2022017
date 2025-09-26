@@ -2,6 +2,8 @@ package org1.example1;
 
 import java.util.HashMap;
 
+
+//added a comment simply
 class Calculator{
     public HashMap<Integer, String> options;
     public int SQRT = 1;

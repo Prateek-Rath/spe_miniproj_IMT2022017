@@ -49,6 +49,22 @@ test {
     }
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'org1.example1.App'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
