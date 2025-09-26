@@ -39,7 +39,7 @@
 
 - name: Deploy Docker container locally
   hosts: local
-  become: true   # optional if docker needs sudo
+  become: false   # optional if docker needs sudo
   tasks:
     - name: Pull latest Docker image
       shell: docker pull pratster20/miniproj_image1:1.0
