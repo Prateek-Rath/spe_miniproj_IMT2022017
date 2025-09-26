@@ -1,10 +1,13 @@
 ---
 - name: Deploy Scientific Calculator Docker Container
   hosts: local
+  # Setting become: false is correct if you have permissions to run Docker without sudo.
+  # If not, you must use 'become: true' and provide a sudo password via -K or Ansible Vault.
   become: false
   tasks:
-    - name: Ensure required Python packages are installed
-      pip:
+    - name: Ensure required Python packages are installed (Prerequisite)
+      # Using ansible.builtin.pip is better than just 'pip' for clarity
+      ansible.builtin.pip:
         name:
           - docker
           - requests
@@ -16,17 +19,17 @@
         tag: "1.0"
         source: pull
 
-    - name: Stop old Calculator container if running
+    - name: Stop and remove old calculator container
       community.docker.docker_container:
         name: calculator
-        state: absent
+        state: absent # ensures the container is stopped and removed
+        force_kill: true
 
-    - name: Run Calculator Container
+    - name: Run Calculator Container as a Background Service
       community.docker.docker_container:
         name: calculator
         image: pratster20/miniproj_image1:1.0
+        # State: started implies detached mode (-d) for deployment
         state: started
         restart_policy: always
-        interactive: true
-        tty: true
         command: ["java", "-cp", "/app/target/classes", "com.calculator.App"]
