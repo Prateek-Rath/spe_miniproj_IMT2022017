@@ -61,6 +61,7 @@ jar {
 }
 
 tasks.jar {
+    //to get rid of the META INF duplication error...
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
