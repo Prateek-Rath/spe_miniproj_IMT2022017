@@ -34,6 +34,7 @@ java {
 
 application {
     // Define the main class for the application.
+    //entry point
     mainClass = 'org1.example1.App'
 }
 
@@ -52,6 +53,7 @@ test {
 jar {
     manifest {
         attributes(
+                //jar should have main so that you can run with java -jar
                 'Main-Class': 'org1.example1.App'
         )
     }
