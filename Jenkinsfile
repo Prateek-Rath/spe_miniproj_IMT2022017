@@ -15,17 +15,17 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                sh './gradlew test'
-            }
-        }
+	stage('Build JAR') {
+	    steps {
+		sh './gradlew clean build'
+	    }
+	}
 
-        stage('Build JAR') {
-            steps {
-                sh './gradlew clean build'
-            }
-        }
+	stage('Test') {
+	    steps {
+		sh './gradlew test'
+	    }
+	}
 
         stage('Build Docker Image') {
             steps {
