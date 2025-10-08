@@ -62,7 +62,7 @@ pipeline {
 	    emailext(
 		to: 'prateekrath2023@gmail.com',
 		subject: 'Build Update',
-		body: 'Build finished.'
+		body: 'Build finished successfully.'
 	    )
 
         }
@@ -71,7 +71,7 @@ pipeline {
 	    emailext(
 		to: 'prateekrath2023@gmail.com',
 		subject: 'Build Update',
-		body: 'Build finished.'
+		body: 'Build finished, but failed.'
 	    )
 
         }
