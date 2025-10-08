@@ -56,11 +56,25 @@ pipeline {
 
     post {
 	always {cleanWs()}
-        success {
+        
+	success {
             echo "Build and deployment completed successfully!"
+	    emailext(
+		to: 'prateekrath2023@gmail.com',
+		subject: 'Build Update',
+		body: 'Build finished.'
+	    )
+
         }
         failure {
             echo "Build or deployment failed. Check logs above."
+	    emailext(
+		to: 'prateekrath2023@gmail.com',
+		subject: 'Build Update',
+		body: 'Build finished.'
+	    )
+
         }
     }
+    //remember to put app pwd in jenkins
 }
