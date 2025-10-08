@@ -14,18 +14,18 @@ pipeline {
                 git 'https://github.com/Prateek-Rath/spe_miniproj_IMT2022017.git'
             }
         }
-
+	stage('Test') {
+	    steps {
+		sh './gradlew test'
+	    }
+	}
+	
 	stage('Build JAR') {
 	    steps {
 		sh './gradlew clean build'
 	    }
 	}
 
-	stage('Test') {
-	    steps {
-		sh './gradlew test'
-	    }
-	}
 
         stage('Build Docker Image') {
             steps {
@@ -55,6 +55,7 @@ pipeline {
     }
 
     post {
+	always {cleanWs()}
         success {
             echo "Build and deployment completed successfully!"
         }
