@@ -11,7 +11,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Prateek-Rath/spe_miniproj_IMT2022017.git', credentialsId: 'github-pat'
+                git url: 'https://github.com/Prateek-Rath/spe_miniproj_IMT2022017.git', 
+		credentialsId: 'github-pat'
             }
         }
 	stage('Test') {
