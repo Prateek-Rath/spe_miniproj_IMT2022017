@@ -1,5 +1,10 @@
 # Use official OpenJDK base image
-FROM openjdk:21-jdk
+# FROM openjdk:21-jdk
+
+# the image is no longer supported
+# update
+FROM eclipse-temurin:21-jdk
+
 
 # Create app directory inside the container
 WORKDIR /app
